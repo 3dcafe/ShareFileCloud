@@ -1,4 +1,4 @@
-﻿using Entites.Models.Interfaces;
+﻿using CafeExtensions.Interfaces;
 
 namespace Entites.Models;
 /// <summary>

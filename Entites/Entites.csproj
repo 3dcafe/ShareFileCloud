@@ -7,12 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Abstract\" />
-    <Folder Include="Models\Enum\" />
+    <Compile Remove="Models\Abstract\**" />
+    <Compile Remove="Models\Enum\**" />
+    <EmbeddedResource Remove="Models\Abstract\**" />
+    <EmbeddedResource Remove="Models\Enum\**" />
+    <None Remove="Models\Abstract\**" />
+    <None Remove="Models\Enum\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CafeExtensions" Version="1.0.2" />
+    <PackageReference Include="CafeExtensions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.24" />
   </ItemGroup>
 
 </Project>
