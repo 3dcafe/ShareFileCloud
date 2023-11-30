@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Providers.Backup
+﻿namespace Providers.Backup
 {
     internal class Redis
     {
+        public static string Backup()
+        {
+            return "data";
+        }
     }
 }
