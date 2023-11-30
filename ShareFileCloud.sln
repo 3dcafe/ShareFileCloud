@@ -5,11 +5,13 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFileCloud", "ShareFileCloud\ShareFileCloud.csproj", "{D5F604E2-2BDD-4532-98A2-EBC78BEEA715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{733F75B7-1082-495A-94AF-AC6AB0F791DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{733F75B7-1082-495A-94AF-AC6AB0F791DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entites", "Entites\Entites.csproj", "{CC869350-C1AB-46FB-B3FF-453528BDDE66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entites", "Entites\Entites.csproj", "{CC869350-C1AB-46FB-B3FF-453528BDDE66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{D1FB2797-91CB-4F6B-B0AD-0752384BA892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{D1FB2797-91CB-4F6B-B0AD-0752384BA892}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Providers", "Providers\Providers.csproj", "{4340229D-6858-4129-BB4F-961CA10F7F3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D1FB2797-91CB-4F6B-B0AD-0752384BA892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1FB2797-91CB-4F6B-B0AD-0752384BA892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1FB2797-91CB-4F6B-B0AD-0752384BA892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4340229D-6858-4129-BB4F-961CA10F7F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4340229D-6858-4129-BB4F-961CA10F7F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4340229D-6858-4129-BB4F-961CA10F7F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4340229D-6858-4129-BB4F-961CA10F7F3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
