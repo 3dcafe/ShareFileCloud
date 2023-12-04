@@ -2,6 +2,10 @@
 {
     internal interface IBackup
     {
+        //todo
 
+        //connect bool?
+        //backup
+        //restore
     }
 }
