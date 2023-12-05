@@ -1,13 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { AuthProvider } from './auth-provider.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
+
+  private authProvider: AuthProvider;
+
+  constructor(@Inject('AuthProvider') authProvider: AuthProvider) {
+    this.authProvider = authProvider;
+  }
+
+
+  login(username: string, password: string): Observable<any> {
+    return this.authProvider.login(username, password);
+  }
+
+
+  /*
   private apiUrl: string = 'https://example.com/auth';
   private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -46,4 +60,5 @@ export class AuthService {
   isLoggedIn(): Observable<boolean> {
     return this.loggedInSubject.asObservable();
   }
+  */
 }
