@@ -7,7 +7,7 @@ import { ApiProvider } from './api-provider.interface';
 })
 export class ApiService {
   private apiProvider: ApiProvider;
-
+  
   constructor(apiProvider: ApiProvider) {
     this.apiProvider = apiProvider;
   }
