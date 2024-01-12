@@ -9,15 +9,15 @@ import { ApiService } from '../api.service';
 
 export class LoginAuthProvider implements AuthProvider {
 
-  private api: ApiService;
+  //private api: ApiService;
 
-  constructor(@Inject('AuthProvider') api: ApiService) {
-    this.api = api;
+  constructor(/*@Inject('AuthProvider') api: ApiService*/) {
+   // this.api = api;
   }
 
   login(username: string, password: string): Observable<any> {
     console.log(`Attempting login with username: ${username}, password: ${password}`);
-    this.api.get()
+  //  this.api.get()
     return of(true);
   }
 

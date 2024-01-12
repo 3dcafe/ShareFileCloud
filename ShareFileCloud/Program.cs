@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Localization;
 using ShareFileCloud.Extensions;
 using ShareFileCloud.Middleware;
 using System.Reflection;
 using System.Text;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,20 @@ builder.Services.Configure<FormOptions>(x =>
 	x.MultipartBodyLengthLimit = int.MaxValue;
 	x.BufferBodyLengthLimit = int.MaxValue;
 	x.MultipartBoundaryLengthLimit = int.MaxValue;
+});
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+                    new CultureInfo("en"),
+                    new CultureInfo("ru")
+    };
+    options.DefaultRequestCulture = new RequestCulture("ru");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 });
 
 builder.Services.AddControllers();
@@ -111,23 +127,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SigningKey"]))
 	};
 });
-//builder.Services.AddInMemorySubscriptions();
 
-bool IncludeExceptionDetails = false;
-#if DEBUG
-IncludeExceptionDetails = true;
-#endif
-/*
-builder.Services
-	 //.AddGraphQLServer()
-	 //.AddAuthorization()
-	 //.AddQueryType<Queries>()
-	 //.AddMutationType<Mutation>()
-	 //.AddProjections()
-	 //.AddFiltering()
-	 //.AddSorting()
-	 //.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = IncludeExceptionDetails);
-	 */
 builder.Services.AddControllersWithViews();
 
 #endregion

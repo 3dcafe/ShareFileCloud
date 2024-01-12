@@ -9,16 +9,18 @@ import { AuthProvider } from './auth-provider.interface';
 })
 export class AuthService {
 
+  /*
   private authProvider: AuthProvider;
 
   constructor(@Inject('AuthProvider') authProvider: AuthProvider) {
     this.authProvider = authProvider;
-  }
+  }*/
 
 
+  /*
   login(username: string, password: string): Observable<any> {
     return this.authProvider.login(username, password);
-  }
+  }*/
 
 
   /*

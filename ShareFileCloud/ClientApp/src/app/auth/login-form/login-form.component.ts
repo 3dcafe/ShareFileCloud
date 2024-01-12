@@ -12,7 +12,7 @@ import { of } from 'rxjs/internal/observable/of';
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   loginResponse$: Observable<any> = of(null);
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(/*private authService: AuthService,*/ private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -23,6 +23,6 @@ export class LoginFormComponent implements OnInit {
   }
   onSubmit() {
     const { username, password } = this.loginForm.value;
-    this.loginResponse$ = this.authService.login(username, password);
+  //  this.loginResponse$ = this.authService.login(username, password);
   }
 }

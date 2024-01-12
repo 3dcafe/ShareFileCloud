@@ -1,11 +1,11 @@
-﻿using DTO.Auth;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ShareFileCloud.SimpleModels.Auth;
 
 namespace ShareFileCloud.Services.Auth;
 
 public interface IAuthService
 {
+    Task<LoginSimpleAnswer> LoginAsync(Login model);
     Task<IActionResult> RegisterAsync(Register model);
-    Task<IActionResult> LoginAsync(Login model);
     Task<IActionResult> LogoutAsync();
 }
