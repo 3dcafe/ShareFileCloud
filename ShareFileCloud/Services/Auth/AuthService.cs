@@ -1,6 +1,4 @@
 ﻿using CafeExtensions.Exceptions;
-using CafeExtensions.SimpleModels;
-using Entites.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

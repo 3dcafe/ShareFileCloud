@@ -1,5 +1,6 @@
-﻿using Entites.Models;
+﻿using Entitles.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace DAL;
 /// <summary>
@@ -8,7 +9,7 @@ namespace DAL;
 public class ApplicationContext : DbContext
 {
     /// <summary>
-    /// Base contructor
+    /// Base constructor
     /// </summary>
     /// <param name="options"></param>
     public ApplicationContext()
@@ -16,7 +17,7 @@ public class ApplicationContext : DbContext
     }
 
     /// <summary>
-    /// Base contructor
+    /// Base constructor
     /// </summary>
     /// <param name="options"></param>
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
@@ -30,6 +31,20 @@ public class ApplicationContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 #warning set env from config file for build
+#if DEBUG
+        var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+        string path = @"C:\Source\test.txt";
+        if (File.Exists(path) && string.IsNullOrEmpty(connectionString))
+        {
+            using (FileStream fstream = File.OpenRead(path))
+            {
+                byte[] buffer = new byte[fstream.Length];
+                fstream.Read(buffer, 0, buffer.Length);
+                connectionString = Encoding.Default.GetString(buffer);
+            }
+        }
+        optionsBuilder.UseNpgsql(connectionString);
+#endif
     }
     /// <summary>
     /// Users on system

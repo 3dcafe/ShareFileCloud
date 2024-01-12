@@ -1,7 +1,5 @@
 ﻿using CafeExtensions.Exceptions;
 using CafeExtensions.Repositories;
-using DAL;
-using Entites.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +11,7 @@ namespace ShareFileCloud.Controllers;
 [ApiController]
 public class AppFilesController : BaseController
 {
+    /*
     /// <summary>
     /// Database layer
     /// </summary>
@@ -132,5 +131,5 @@ public class AppFilesController : BaseController
         #endregion
         return null;
     }
-
+    */
 }

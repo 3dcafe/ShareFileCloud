@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using CafeExtensions.SimpleModels;
 using CafeExtensions.Interfaces;
-using Microsoft.AspNetCore.Identity;
 
-namespace Entites.Models
+
+namespace Entitles.Models
 {
     /// <summary>
     /// Model Application User on system

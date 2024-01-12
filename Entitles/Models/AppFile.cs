@@ -1,6 +1,6 @@
 ﻿using CafeExtensions.Interfaces;
 
-namespace Entites.Models;
+namespace Entitles.Models;
 /// <summary>
 /// User Files upload
 /// </summary>

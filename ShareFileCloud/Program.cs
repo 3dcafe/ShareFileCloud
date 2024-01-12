@@ -8,6 +8,8 @@ using ShareFileCloud.Middleware;
 using System.Reflection;
 using System.Text;
 using System.Globalization;
+using DAL;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -100,6 +102,35 @@ builder.Services.AddSwaggerGen(c =>
 #endif
 
 builder.Services.AddHttpContextAccessor();
+
+
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+Console.WriteLine($"Connection {connectionString ?? "no env"}");
+
+#if DEBUG
+string path = @"C:\Source\test.txt";
+if (File.Exists(path) && string.IsNullOrEmpty(connectionString))
+{
+    using (FileStream fstream = File.OpenRead(path))
+    {
+        byte[] buffer = new byte[fstream.Length];
+        await fstream.ReadAsync(buffer, 0, buffer.Length);
+        string textFromFile = Encoding.Default.GetString(buffer);
+        Console.WriteLine($"Connection from file : {textFromFile}");
+        connectionString = textFromFile;
+    }
+}
+#endif
+
+builder.Services.AddDbContext<ApplicationContext>
+    (
+        options =>
+                options
+                    .EnableDetailedErrors()
+                    .EnableSensitiveDataLogging()
+                    .UseNpgsql(connectionString), ServiceLifetime.Transient
+    );
+
 
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
