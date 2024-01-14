@@ -15,7 +15,7 @@ namespace ShareFileCloud.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
         {
             if (!ModelState.IsValid)
@@ -25,6 +25,7 @@ namespace ShareFileCloud.Controllers
         }
 
 
+        /*
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] Register model)
         {
@@ -35,6 +36,6 @@ namespace ShareFileCloud.Controllers
         public async Task<IActionResult> Logout()
         {
             return await _authService.LogoutAsync();
-        }
+        }*/
     }
 }

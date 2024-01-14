@@ -8,8 +8,6 @@ using ShareFileCloud.Middleware;
 using System.Reflection;
 using System.Text;
 using System.Globalization;
-using DAL;
-using Microsoft.EntityFrameworkCore;
 using DTO.AutoMappers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -181,7 +179,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-    c.RoutePrefix = "api";
+    c.RoutePrefix = string.Empty;
 });
 
 
@@ -193,14 +191,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html"); ;
-
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
 
 #endregion
