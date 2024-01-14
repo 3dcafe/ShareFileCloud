@@ -9,6 +9,9 @@ using System.Reflection;
 using System.Text;
 using System.Globalization;
 using DTO.AutoMappers;
+using ShareFileCloud.Services.Auth;
+using DTO.Repository;
+using NLog.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -126,24 +129,13 @@ builder.Services
 	.AddAutoMapper(typeof(ApplicationUserMappingProfile));
 
 
-#warning return after review
-
-/*
-builder.Services.AddDbContext<ApplicationContext>
-    (
-        options =>
-                options
-                    .EnableDetailedErrors()
-                    .EnableSensitiveDataLogging()
-                    .UseNpgsql(connectionString), ServiceLifetime.Transient
-    );
-*/
-
-
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 
-builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+builder.Services
+    .AddScoped<UsersRepository>()
+	.AddScoped<AuthService>()
+    .AddTransient<ExceptionHandlingMiddleware>();
 
 builder.Services
 	.AddSignalR(o =>
@@ -151,6 +143,19 @@ builder.Services
 		o.EnableDetailedErrors = true;
 		o.MaximumReceiveMessageSize = null;
 	});
+
+
+builder.Services.AddLogging(loggingBuilder =>
+{
+    // ¬ключаем минимальный уровень логировани€
+#if DEBUG
+    loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+#else
+    loggingBuilder.SetMinimumLevel(LogLevel.Information);
+#endif
+    loggingBuilder.AddNLog();
+});
+
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

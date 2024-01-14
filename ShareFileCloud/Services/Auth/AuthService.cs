@@ -78,7 +78,7 @@ public class AuthService : IAuthService
     /// </summary>
     /// <param name="password"></param>
     /// <returns></returns>
-    string HashPassword(string password)
+    internal string HashPassword(string password)
     {
 #warning take from ENV or file ?
         var salt = Encoding.ASCII.GetBytes("testtesttest");

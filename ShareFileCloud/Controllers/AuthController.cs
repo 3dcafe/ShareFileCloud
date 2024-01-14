@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DTO.Models;
+using DTO.Repository;
+using Microsoft.AspNetCore.Mvc;
 using ShareFileCloud.Services.Auth;
 using ShareFileCloud.SimpleModels.Auth;
 
@@ -8,15 +10,38 @@ namespace ShareFileCloud.Controllers
     [Route("api/auth")]
     public class AuthController : Controller
     {
-        private readonly IAuthService _authService;
+        private readonly AuthService _authService;
+        private readonly UsersRepository _usersRepository;
+       
 
-        public AuthController(IAuthService authService)
+
+        public AuthController(
+            AuthService authService,
+            UsersRepository usersRepository
+            )
         {
             _authService = authService;
+            _usersRepository = usersRepository;
         }
 
+#if DEBUG
+        [HttpPost("debug-create-user")]
+        public async Task<ActionResult<ApplicationUserDTO>> CreateUserAsync([FromBody] Login model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var user = await _usersRepository.CreateAsync(new DTO.Models.ApplicationUserDTO()
+            {
+                UserName = model.UserName,
+                PasswordHash = _authService.HashPassword(model.Password ?? string.Empty)
+            }, string.Empty);
+            return Ok(user);
+        }
+#endif
+
+
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Login model)
+        public async Task<IActionResult> LoginAsync([FromBody] Login model)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

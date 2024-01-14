@@ -30,8 +30,6 @@ public class ApplicationContext : DbContext
     /// <param name="optionsBuilder"></param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-#warning set env from config file for build
-#if DEBUG
         var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
         string path = @"C:\Source\test.txt";
         if (File.Exists(path) && string.IsNullOrEmpty(connectionString))
@@ -44,8 +42,16 @@ public class ApplicationContext : DbContext
             }
         }
         optionsBuilder.UseNpgsql(connectionString);
-#endif
     }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<DateTimeOffset>()
+            .HaveConversion<DateTimeOffsetConverter>();
+        base.ConfigureConventions(configurationBuilder);
+    }
+
     /// <summary>
     /// Users on system
     /// </summary>
