@@ -1,4 +1,6 @@
 ﻿using CafeExtensions.Exceptions;
+using DTO.Models;
+using DTO.Repository;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,35 +15,39 @@ namespace ShareFileCloud.Services.Auth;
 
 public class AuthService : IAuthService
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UsersRepository _usersRepository;
+    //private readonly UserManager<ApplicationUser> _userManager;
+    //private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IStringLocalizer<SharedResource> _localization;
     private readonly IConfiguration _config;
 
     public AuthService(
-        UserManager<ApplicationUser> userManager,
+        UsersRepository usersRepository,
+        // UserManager<ApplicationUser> userManager,
         IStringLocalizer<SharedResource> localization,
-        IConfiguration config,
-        SignInManager<ApplicationUser> signInManager
+        IConfiguration config
+       // SignInManager<ApplicationUser> signInManager
         )
     {
-        _userManager = userManager;
+      //  _userManager = userManager;
         _localization = localization;
         _config = config;
-        _signInManager = signInManager;
+        _usersRepository = usersRepository;
+      //  _signInManager = signInManager;
     }
 
 #warning Document this method
 #warning write test for this method
     public async Task<LoginSimpleAnswer> LoginAsync(SimpleModels.Auth.Login model)
     {
-        var user = await _userManager.FindByNameAsync(model.UserName);
+        var user = await _usersRepository.FindByUserNameAsync(model.UserName);
         if(user == null)
             return new LoginSimpleAnswer { State = false, Error = _localization["ErrorTextUserNotFound"] };
         if (user.IsDeleted)
             return new LoginSimpleAnswer { State = false, Error = _localization["TextErrorLockAdmin"] };
         if (user.LockoutEnabled)
             return new LoginSimpleAnswer { State = false, Error = _localization["TextErrorLockAdmin"] };
+
 
         if (model.Password != null && HashPassword(model.Password) == user.PasswordHash)
         {
@@ -91,7 +97,7 @@ public class AuthService : IAuthService
     /// <param name="user"></param>
     /// <param name="organizationId"></param>
     /// <returns></returns>
-    JwtSecurityToken GetJwtSecurityToken(ApplicationUser? user)
+    JwtSecurityToken GetJwtSecurityToken(ApplicationUserDTO? user)
     {
         if (user == null)
             throw new AccessErrorException($"error - user can not be null");

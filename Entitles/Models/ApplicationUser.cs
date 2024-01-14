@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using CafeExtensions.SimpleModels;
 using CafeExtensions.Interfaces;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace Entitles.Models
 {

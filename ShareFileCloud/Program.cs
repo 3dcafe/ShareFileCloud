@@ -10,6 +10,7 @@ using System.Text;
 using System.Globalization;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using DTO.AutoMappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -122,6 +123,14 @@ if (File.Exists(path) && string.IsNullOrEmpty(connectionString))
 }
 #endif
 
+
+builder.Services
+	.AddAutoMapper(typeof(ApplicationUserMappingProfile));
+
+
+#warning return after review
+
+/*
 builder.Services.AddDbContext<ApplicationContext>
     (
         options =>
@@ -130,7 +139,7 @@ builder.Services.AddDbContext<ApplicationContext>
                     .EnableSensitiveDataLogging()
                     .UseNpgsql(connectionString), ServiceLifetime.Transient
     );
-
+*/
 
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -166,6 +175,14 @@ builder.Services.AddControllersWithViews();
 
 #region App
 var app = builder.Build();
+
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+    c.RoutePrefix = "api";
+});
 
 
 if (!app.Environment.IsDevelopment())
