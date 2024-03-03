@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /ShareFileCloud/ClientApp/.angular/cache/
 /Providers.Tests/appsettings.json
+/share_file_cloud/.vscode
