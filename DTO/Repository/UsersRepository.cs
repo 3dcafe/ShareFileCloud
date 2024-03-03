@@ -10,7 +10,7 @@ public class UsersRepository
     private readonly IMapper _mapper;
     private readonly ILogger<UsersRepository> _logger;
 
-    private readonly DAL.Repository.UsersRepository _repository;
+    private readonly DAL.Repository.UsersRepository _usersRepository;
 
 
     /// <summary>
@@ -24,12 +24,12 @@ public class UsersRepository
     {
         _mapper = mapper;
         _logger = logger;
-        _repository = new DAL.Repository.UsersRepository(logger);
+        _usersRepository = new DAL.Repository.UsersRepository(logger);
     }
 
     public async Task<ApplicationUserDTO?> FindByUserNameAsync(string? userName)
     {
-        var users = await _repository.FindAsync(new Func<ApplicationUser, bool>(x=>x.UserName == userName));
+        var users = await _usersRepository.FindAsync(new Func<ApplicationUser, bool>(x=>x.UserName == userName));
         return users.Select(x => _mapper.Map<ApplicationUserDTO?>(x)).FirstOrDefault();
     }
 
@@ -38,7 +38,7 @@ public class UsersRepository
         var dataUser = _mapper.Map<ApplicationUser>(user);
         if (dataUser.Id == null)
             dataUser.Id = Guid.NewGuid().ToString();
-        var newUser = await _repository.CreateAsync(dataUser, userId);
+        var newUser = await _usersRepository.CreateAsync(dataUser, userId);
         return _mapper.Map<ApplicationUserDTO>(newUser);
     }
 }
