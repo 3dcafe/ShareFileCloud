@@ -40,6 +40,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "share_file_cloud", "share_f
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "58821"
+		SlnRelativePath = "share_file_cloud\"
 	EndProjectSection
 EndProject
 Global
