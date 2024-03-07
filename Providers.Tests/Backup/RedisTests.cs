@@ -140,12 +140,8 @@ namespace Providers.Tests.Backup
 
             // Call the Redis backup method with the parsed parameters
             var data = await redis.SetBackupAsync(host, port, password, defaultDb, "D:\\cb621462-3a35-448e-9678-c143743c61f8.json");
-            var dd = "";
 
-#warning check on connection status
-            //   SaveJsonToFile(data, $"D:\\{Guid.NewGuid()}.json");
-
-            Assert.True(true);
+            Assert.True(data);
         }
 
 
