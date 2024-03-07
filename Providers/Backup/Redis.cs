@@ -8,7 +8,6 @@ namespace Providers.Backup
     public class Redis : IBackup
     {
         private ConnectionMultiplexer _db;
-
         /// <summary>
         /// Initializing connections
         /// </summary>
@@ -32,11 +31,10 @@ namespace Providers.Backup
             }
             return true;
         }
-
         public async Task<string> GetBackupAsync(string host, int port, string password, int defaultDb)
         {
             var statusConnect = InitConnection(host, port, password, defaultDb);
-
+#warning need check
             // Get all keys in the selected database
             var keys = _db.GetServer($"{host}:{port}").Keys().ToArray();
 
@@ -58,6 +56,18 @@ namespace Providers.Backup
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
             return jsonString;
+        }
+
+#warning set interface
+        public async Task<bool> SetBackupAsync(string host, int port, string? password, int defaultDb, string pathToFile)
+        {
+            var statusConnect = InitConnection(host, port, password, defaultDb);
+#warning need check
+
+            var  dd = new Dictionary<string, string>();
+
+            return true;
+
         }
         /// <summary>
         /// Get string from the local database
