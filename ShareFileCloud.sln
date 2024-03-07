@@ -22,27 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFileCloud", "ShareFileCloud\ShareFileCloud.csproj", "{DD550D17-B85B-4DFF-BB99-BA902B7E6D87}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "share_file_cloud", "share_file_cloud\", "{9C777C83-4131-47BC-8B88-AC7AC72E3859}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_58821"
-		Debug.AspNetCompiler.PhysicalPath = "share_file_cloud\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58821\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_58821"
-		Release.AspNetCompiler.PhysicalPath = "share_file_cloud\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58821\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "58821"
-		SlnRelativePath = "share_file_cloud\"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,10 +56,6 @@ Global
 		{DD550D17-B85B-4DFF-BB99-BA902B7E6D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD550D17-B85B-4DFF-BB99-BA902B7E6D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD550D17-B85B-4DFF-BB99-BA902B7E6D87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C777C83-4131-47BC-8B88-AC7AC72E3859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C777C83-4131-47BC-8B88-AC7AC72E3859}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C777C83-4131-47BC-8B88-AC7AC72E3859}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C777C83-4131-47BC-8B88-AC7AC72E3859}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
